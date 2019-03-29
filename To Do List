@@ -1,0 +1,92 @@
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+      MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: MyStatefullWidget(),
+        theme: ThemeData(
+          primaryColor: Colors.green,
+          accentColor: Colors.greenAccent,
+          brightness: Brightness.light,
+        ),
+      )
+  );
+}
+
+class MyStatefullWidget extends StatefulWidget {
+
+  @override
+  _MyStatefullWidgetState createState() => _MyStatefullWidgetState();
+}
+
+class _MyStatefullWidgetState extends State<MyStatefullWidget> {
+
+  String input = "";
+  List list = List();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    list.add("No. 1");
+    list.add("No. 2");
+    list.add("No. 3");
+    list.add("No. 4");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("To do list", textDirection: TextDirection.ltr,),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext context){
+                return AlertDialog(
+                  title: Text("Add To do"),
+                  content: TextField(
+                    onChanged: (String value){
+                      input = value;
+                    },
+                  ),
+                  actions: <Widget>[
+                    FlatButton(
+                      child: Text("Add"),
+                      onPressed: () {
+                        setState(() {
+                          list.add(input);
+                        });
+                        Navigator.of(context).pop();
+                      },
+                    )
+                  ],
+                );
+              }
+          );
+        },
+      ),
+      body: ListView.builder(
+          itemCount: list.length,
+          itemBuilder: (BuildContext context, int index){
+            return Dismissible(
+              key: Key(list[index]),
+              child: ListTile(
+                title: Text(list[index]),
+              ),
+              onDismissed: (direction){
+                setState(() {
+                  list.removeAt(index);
+                });
+              },
+            );
+          },
+      )
+    );
+  }
+}
+

@@ -1,0 +1,47 @@
+@override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: 40.0, left: 8.0, right: 8.0),
+      child: Column(
+        children: <Widget>[
+          Card(
+            child: Padding(
+              padding: EdgeInsets.all(24.0),
+              child: Row(
+                textDirection: TextDirection.ltr,
+                children: <Widget>[
+                  Text("Child 1", textDirection: TextDirection.ltr,),
+                  Expanded(
+                    child: Text("Child 2", textDirection: TextDirection.ltr,),
+                  ),
+
+                  Text("Child 3", textDirection: TextDirection.ltr,),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top:  8.0),
+            child: Card(
+              child: Padding(
+                padding: EdgeInsets.all(24.0),
+                child: Row(
+                  textDirection: TextDirection.ltr,
+                  children: <Widget>[
+                    Text("Child 1", textDirection: TextDirection.ltr,),
+                    Expanded(
+                      child: Text("Child 2", textDirection: TextDirection.ltr,),
+                    ),
+                    Text("Child 3", textDirection: TextDirection.ltr,),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Image(
+            image: AssetImage("images/bongocat.jpg"),
+          )
+        ],
+      ),
+    );
+  }

@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+import 'package:flutter_json/post.dart';
+
+void main() => runApp (
+  MaterialApp(
+    home: MyApp(),
+  )
+);
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  Future<List<Post>> showPosts() async{
+
+    var data = await http.get("https://jsonplaceholder.typicode.com/posts");
+    var dataDecoded = json.decode(data.body);
+
+    List<Post> posts = List();
+    dataDecoded.forEach((post){
+      posts.add(Post(post["title"],post["body"]));
+    });
+
+    return posts;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("JSon"),
+      ),
+      body: FutureBuilder(
+        future: showPosts(),
+        builder: (context, snapshot) {
+          return ListView.builder(
+            itemCount: snapshot.data.length,
+            itemBuilder: (context, index){
+              return Card(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Text(snapshot.data[index].title, style: TextStyle(fontSize: 30.0)),
+                    Divider(),
+                    Text(snapshot.data[index].text, style: TextStyle(fontSize: 15.0)),
+                    Divider(),
+                    RaisedButton(
+                      child: Text("Read More..."),
+                      onPressed: () {},
+                    )
+                  ],
+                ),
+              );
+            }
+          );
+        },
+      )
+    );
+  }
+}
+

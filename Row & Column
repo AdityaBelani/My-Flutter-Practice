@@ -1,0 +1,21 @@
+@override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: 40.0, left: 8.0),
+      child: Column(
+        children: <Widget>[
+          Text("Coloumn 1", textDirection: TextDirection.ltr),
+          Text("Coloumn 2", textDirection: TextDirection.ltr),
+          Text("Coloumn 3", textDirection: TextDirection.ltr),
+          Row(
+            textDirection: TextDirection.ltr,
+            children: <Widget>[
+              Text("Row 1", textDirection: TextDirection.ltr),
+              Text("Row 2", textDirection: TextDirection.ltr),
+              Text("Row 3", textDirection: TextDirection.ltr),
+            ],
+          )
+        ],
+      ),
+    );
+  }

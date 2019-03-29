@@ -1,0 +1,12 @@
+class MyStatelessWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        color: Colors.yellow[900],
+        child: Center(
+            child: Text("PUBG", textDirection: TextDirection.ltr, style: TextStyle(fontSize: 32.0,color: Colors.brown))
+        )
+    );
+  }
+}
+

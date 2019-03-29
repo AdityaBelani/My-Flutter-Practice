@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+import 'screen2.dart';
+import 'screen3.dart';
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: MyApp(),
+    routes: <String, WidgetBuilder>{
+      "/screen2": (BuildContext context) => Screen2(),
+      "/screen3": (BuildContext context) => Screen3(),
+    },
+  ));
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Routing"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.arrow_forward),
+            onPressed: () {
+              Navigator.pushNamed(context, '/screen2');
+            },
+          )
+        ],
+      ),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+
